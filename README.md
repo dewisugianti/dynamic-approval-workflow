@@ -32,13 +32,6 @@ This project focuses on designing and configuring a **Dynamic Multi-Level Approv
 The Finance team provided the approval requirements in the form of an authorization matrix, specifying transaction amount ranges, applicable subaccounts, and designated approvers.
 
 Based on these business requirements, I analyzed and translated the approval matrix into structured system conditions, determining the appropriate AND/OR logic, approval assignments, and sequential approval hierarchy within Acumatica ERP.
-
-### Project Objectives
-
-- Standardize financial authorization across departments.
-- Support different approval limits for each subaccount.
-- Automate multi-level approval routing.
-- Accommodate complex business rules through conditional logic.
   
 ---
 
@@ -61,15 +54,11 @@ The main challenge was to interpret the relationships between different approval
 
 | Challenge | Business Requirement |
 |---|---|
-| Different approval thresholds | Each department requires configurable financial limits. |
-| Shared executive approvers | The same VP or CTO may oversee multiple departments with different authorization limits. |
-| Multi-level authorization | Higher-value transactions require sequential approval from multiple management levels. |
-| Different budget ownership | Asset-related inventory must follow the General Affairs (GA) budget approval structure. |
-| Complex transaction conditions | Multiple transaction attributes must be evaluated simultaneously. |
-
-### Business Objective
-
-To establish a configurable approval framework that translates financial authorization policies into automated ERP approval workflows.
+| Different approval limits | Each department has its own approval limits. |
+| Shared executive approvers | The same VP or CTO can approve transactions for different departments, with different limits for each. |
+| Multi-level authorization | Higher-value transactions must be approved by multiple management levels in order. |
+| Different budget ownership | Asset transactions must be approved by GA first, followed by the relevant department approvers. |
+| Multiple transaction conditions | The system must check several transaction details to determine the correct approval route simultaneously. |
 
 ---
 
@@ -77,7 +66,7 @@ To establish a configurable approval framework that translates financial authori
 
 ### 3.1 Multi-Level Approval Hierarchy
 
-The approval structure follows a sequential authorization model based on transaction amount and configured approval thresholds.
+The approval structure follows a sequential authorization model based on transaction amount and configured approval limits.
 
 **Example: Subaccount 01**
 
@@ -100,7 +89,7 @@ Each approval level must be completed before the transaction proceeds to the nex
 
 ### 3.2 Department-Specific Authorization Limits
 
-Approval thresholds can vary depending on the subaccount, even when the same approver is assigned.
+Approval limits can vary depending on the subaccount, even when the same approver is assigned.
 
 **Example:**
 
@@ -114,7 +103,7 @@ Approval thresholds can vary depending on the subaccount, even when the same app
 | **02** | **VP** | **C** | **>Rp25M – Rp300M** |
 | **03** | **VP** | **C** | **>Rp50M – Rp300M** |
 
-This approach allows a single approver to manage authorization responsibilities across multiple departments without enforcing identical financial thresholds.
+This approach allows a single approver to manage authorization responsibilities across multiple departments without enforcing identical financial limits.
 
 ### 3.3 Budget Ownership-Based Routing
 
@@ -170,22 +159,7 @@ This allows the same approver to be assigned to different departments with diffe
 
 ## 4. Proposed Business Process
 
-### 4.1 Business Requirement Analysis & Approval Logic Design
-
 The process began with the approval matrix provided by the Finance team.
-
-My responsibilities included:
-
-   1. Reviewing the approval matrix and identifying its key attributes.
-   2. Analyzing the relationship between transaction amount ranges, subaccounts, and designated approvers.
-   3. Identifying conditions that require AND logic and alternative conditions that require OR logic.
-   4. Mapping the approval requirements into structured conditional rules.
-   5. Defining the sequential approval hierarchy.
-   6. Translating the designed logic into Acumatica ERP approval configurations.
-   7. Validating the configuration against the business requirements.
-
-### 4.2 Transaction Approval Execution
-
 When a transaction is submitted, the system evaluates its attributes against the configured approval rules.
 
 **Process Flow:**
@@ -250,11 +224,12 @@ The following scenarios demonstrate how different business rules determine appro
 |---|---|
 | Inventory Classification | Asset |
 | Budget Ownership | General Affairs |
+| Next Approval | Relevant Department / Subaccount |
 
 **Expected Approval Route**
 
 <p align="center">
-  <strong>GA Budget</strong> &rarr; <strong>GA Approval Matrix</strong>
+  <strong>GA Approval</strong> &rarr; <strong> Relevant Department's Approval Levels based on Subaccount and Amount</strong>
 </p>
 
 ---
@@ -262,21 +237,6 @@ The following scenarios demonstrate how different business rules determine appro
 ## 6. Technical Implementation
 
 The implementation focuses on translating business authorization policies into configurable Acumatica ERP approval rules.
-
-### Requirement-to-System Logic Mapping
-
-The provided approval matrix was not directly translated into a one-to-one system configuration.
-
-It required further analysis to identify how multiple criteria should interact within the approval workflow.
-
-Key implementation activities included:
-
-- Interpreting business-defined authorization ranges and approver assignments.
-- Identifying criteria that must be evaluated together using AND conditions.
-- Grouping alternative approval scenarios using OR conditions.
-- Structuring conditional rules to accommodate different subaccount thresholds.
-- Translating the resulting logic into Acumatica Approval Map configurations.
-- Ensuring that the configured approval hierarchy reflected the intended business authorization process.
 
 ### Configuration Screenshots
 
@@ -300,31 +260,25 @@ Key implementation activities included:
 
 ---
 
----
-
 ## 7. Key Contributions
 
 My contributions to this project included:
 
-- Analyzed Finance-provided approval matrices and translated tabular business requirements into structured ERP approval logic.
-- Independently designed AND/OR conditional groupings based on the relationships between transaction attributes.
-- Mapped department-specific authorization thresholds and approver assignments into Acumatica Approval Maps.
-- Designed sequential approval routing to support multi-level financial authorization.
-- Validated system configurations against the original business requirements.
+- Reviewed approval requirements from the Finance team and converted them into system rules.
+- Created AND/OR conditions based on transaction details and approval requirements.
+- Set up approval limits and assigned approvers for different departments in Acumatica.
+- Built multi-level approval flows, from SPV to higher management levels.
+- Tested the approval setup to make sure it worked as expected.
 
 ---
 
 ## 8. Project Outcome
 
-The designed approval framework provides a structured approach to managing financial authorization across multiple departments.
-
 It supports:
-
-- Flexible approval thresholds based on departmental requirements.
-- Sequential authorization for higher-value transactions.
-- Shared executive approvers with differentiated authorization limits.
-- Conditional routing based on transaction attributes and budget ownership.
-- Configurable approval policies maintained by the Finance team.
+- Different approval limits for each department.
+- Step-by-step approval for higher-value transactions.
+- Shared approvers with different approval limits for each department.
+- Automatic approval routing based on transaction details and budget ownership.
 
 The solution demonstrates how complex business authorization requirements can be translated into structured ERP workflow configurations.
 
