@@ -174,7 +174,7 @@ When a transaction is submitted, the system evaluates its attributes against the
 8. The document reaches its final approval status after all required approvals are completed.
 
 <p align="center">
-  <img src="diagrams/transaction-approval-flow.png" alt="Transaction Approval Execution Flowchart" width="850">
+  <img src="BF_approvalprocess.drawio.png" alt="Transaction Approval Execution Flowchart" width="850">
 </p>
 
 ---
