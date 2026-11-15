@@ -55,7 +55,7 @@ The main challenge was to interpret the relationships between different approval
 | Challenge | Business Requirement |
 |---|---|
 | Different approval limits | Each department has its own approval limits. |
-| Shared executive approvers | The same VP or CTO can approve transactions for different departments, with different limits for each. |
+| Shared executive approvers | The same VP or C-Level can approve transactions for different departments, with different limits for each. |
 | Multi-level authorization | Higher-value transactions must be approved by multiple management levels in order. |
 | Different budget ownership | Asset transactions must be approved by GA first, followed by the relevant department approvers. |
 | Multiple transaction conditions | The system must check several transaction details to determine the correct approval route simultaneously. |
@@ -75,7 +75,7 @@ The approval structure follows a sequential authorization model based on transac
 | Supervisor (SPV) | Approver A | Rp0 – Rp15M |
 | Manager | Approver B | >Rp15M – Rp50M |
 | Vice President (VP) | Approver C | >Rp50M – Rp300M |
-| Chief Technology Officer (CTO) | Approver D | >Rp300M |
+| C-Level | Approver D | >Rp300M |
 
 Approval requirements are cumulative.
 
